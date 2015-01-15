@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>{% block title %}My Polls{% endblock %}</title>
+</head>
+
+<body>
+    {% block headebar %}
+    <div id="head" style="min-height:100px; width:100%; background-color:#225aae;">
+        <div id="logo_sec"><img src="images/logo.png"/></div>
+    </div>
+    {% endblock %}
+    {% block nav_bar %}
+    <div id="head" style="min-height:30px; width:100%; background-color:#9dbceb; color: white;font-size: 18pt;">
+        <a href="/polls">Home</a> | About Us</div>
+    {% endblock %}
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
