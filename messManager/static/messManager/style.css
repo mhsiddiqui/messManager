@@ -1,3 +1,10 @@
 li a {
     color: green;
 }
+body{
+    background-color: #ceffd7;
+}
+#logo{
+    width:100px;
+    height: 100px;
+}
