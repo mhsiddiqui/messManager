@@ -44,4 +44,4 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('messManager:results', args=(p.id,)))
 
 def mainPage(self):
-    return HttpResponse("You're looking at main page.")
+    return HttpResponseRedirect('/polls')
