@@ -1,10 +1,36 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render,render_to_response
 from django.template import RequestContext, loader
 from messManager.models import Question,Choice
 from django.views import generic
+from django.contrib import auth
+from django.core.context_processors import csrf
+
+
+def login(request):
+    c = {}
+    c.update(csrf(request))
+    return render_to_response('messManager/login.html',c)
+
+def auth_view(request):
+    username = request.POST.get('username','')
+    password = request.POST.get('password','')
+    user = auth.authenticate(username=username,password=password)
+    if user is not None:
+        auth.login(request,user)
+        return HttpResponseRedirect('/polls')
+    else:
+        return HttpResponseRedirect('/accounts/invalid/')
+
+def invalid_login(request):
+    invalid_login = True
+    dic = {'invalid_login':invalid_login}
+    return render_to_response('messManager/login.html',dic)
+
+def logout(request):
+    return HttpResponse('Logged Out')
 
 
 class IndexView(generic.ListView):
