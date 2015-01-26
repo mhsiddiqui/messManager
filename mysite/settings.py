@@ -87,3 +87,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'messManager/templates')]
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mhassan.eeng@gmail.com'
+EMAIL_HOST_PASSWORD = 'hassan91'
+EMAIL_PORT = 587

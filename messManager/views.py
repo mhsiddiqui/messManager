@@ -7,7 +7,7 @@ from messManager.models import Question,Choice
 from django.views import generic
 from django.contrib import auth
 from django.core.context_processors import csrf
-
+from django.core.mail import send_mail
 
 def login(request):
     c = {}
@@ -71,3 +71,9 @@ def vote(request, question_id):
 
 def mainPage(self):
     return HttpResponseRedirect('/polls')
+
+def send_email(self):
+    message_body = 'Hi this is email send through django application made by M Hassan Siddiqui. There is also attached an image.<img src="http://i59.tinypic.com/zv3769.png"/>'
+    send_mail('Pangay', '<b>Bold Text</b>.', 'mhassan.eeng@gmail.com',
+    ['basit.qc@gmail.com','mhassan.qc@gmail.com'], fail_silently=False, html_message=message_body)
+    return HttpResponse('True')
