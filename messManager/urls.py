@@ -13,5 +13,4 @@ urlpatterns = [
     url(r'^accounts/logout/$',views.logout),
     url(r'^accounts/invalid/$',views.invalid_login)
 
-
 ]
