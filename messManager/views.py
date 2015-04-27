@@ -10,12 +10,7 @@ from django.views import generic
 from django.contrib import auth
 from django.core.context_processors import csrf
 from messManager.forms import UserCreationForm, Login
-
-
-def login(request):
-    c = {}
-    c.update(csrf(request))
-    return render_to_response('messManager/login.html', c)
+from django.contrib.auth import authenticate, login
 
 def auth_view(request):
     username = request.POST.get('username','')
@@ -79,9 +74,15 @@ def mainPage(request):
     if request.method == 'POST':
         signup_formset = UserCreationFormset(request.POST, request.FILES)
         signin_formset = LoginFormset(request.POST, request.FILES)
+        user = authenticate(username=request.POST['username_login'], password=request.POST['password_login'])
+        if user.is_active:
+            login(request, user)
+            print("User is valid, active and authenticated")
+        else:
+            print("The password is valid, but the account has been disabled!")
         if signup_formset.is_valid():
             # do something with the formset.cleaned_data
-            pass
+            signup_formset.save()
         if signin_formset.is_valid():
             pass
     else:

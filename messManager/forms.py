@@ -23,6 +23,15 @@ class UserCreationForm(forms.Form):
         self.fields['password'].widget.attrs.update({'class' : 'form-control', 'placeholder': 'Password'})
         self.fields['email'].widget.attrs.update({'class' : 'form-control', 'placeholder': 'Email ID'})
 
+    def save(self):
+        print 'saved'
+        username = self.cleaned_data['user_name']
+        fname = self.cleaned_data['first_name']
+        lname = self.cleaned_data['last_name']
+        email = self.cleaned_data['email']
+        passwrd = self.cleaned_data['password']
+        user = User(username=username, first_name=fname, last_name=lname, email=email, password=passwrd)
+        user.save()
 
 class Login(forms.Form):
 
