@@ -27,13 +27,14 @@
 
 </head>
 <body>
-  <nav class="white" role="navigation">
+<div class="navbar-fixed">
+  <nav class="teal darken-3" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Mess Manager</a>
+      <a id="logo-container" href="#" class="brand-logo"><span class="teal-text text-accent-1">Mess Manager</span></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Page1</a></li>
-        <li><a href="#">Page2</a></li>
-        <li><a href="#">Page3</a></li>
+        <li><a href="#"><span class="teal-text text-accent-1">Page1</span></a></li>
+        <li><a href="#"><span class="teal-text text-accent-1">Page2</span></a></li>
+        <li><a href="#"><span class="teal-text text-accent-1">Page3</span></a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -44,6 +45,7 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
   </nav>
+</div>
 {% block content %}
 {% endblock %}
 
