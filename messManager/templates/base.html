@@ -1,103 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>{% load staticfiles %}
 <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Bootstrap Core CSS -->
     {% load staticfiles %}
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/landing-page.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <!-- Custom Fonts -->
-    <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'font/css/font-awesome.min.css' %}" />
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    
+
     <title>{% block title %}Mess Manager{% endblock %}</title>
 
-</head>
 
+</head>
 <body>
-    <a href="/sendemail/">Send Email</a>
-    {% block headebar %}
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="topnav container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand topnav" href="#">Start Bootstrap</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li>
-                        <a href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a href="#login">Login</a>
-                    </li>
-                    <li>
-                        <a href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-    {% endblock %}
-    <div id="content" class="container jumbotron">
-        {% block content %}
-            <form method="post" action="">
-    {{ formset.management_form }}
-    <table>
-        {% for form in formset %}
-        {{ form }}
-        {% endfor %}
-    </table>
-</form>
-        {% endblock %}
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
-{% block footer %}
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#about">About</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#services">Services</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+  </nav>
+{% block content %}
 {% endblock %}
-</body>
+
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+
+
+  </body>
+
 </html>

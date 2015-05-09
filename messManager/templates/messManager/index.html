@@ -1,215 +1,96 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
-<a name="about"></a>
-    <div class="intro-header">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1>Landing Page</h1>
-                        <h3>A Template by Start Bootstrap</h3>
-                        <hr class="intro-divider">
-                        <ul class="list-inline intro-social-buttons">
-                            <li>
-                                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
         </div>
-        <!-- /.container -->
+        <div class="row center">
+          <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'img/background1.jpg' %}" alt="Unsplashed background img 2"></div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="mdi-image-flash-on"></i></h2>
+            <h5 class="center">Speeds up development</h5>
+
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="mdi-social-group"></i></h2>
+            <h5 class="center">User Experience Focused</h5>
+
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="mdi-action-settings"></i></h2>
+            <h5 class="center">Easy to work with</h5>
+
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          </div>
+        </div>
+      </div>
 
     </div>
-    <!-- /.intro-header -->
+  </div>
 
 
-    <a name="login"></a>
-    <div class="login-sec">
-        <div class="container">
-
-            <div class="row" style="border-top: 1px solid gray; border-bottom: 1px solid gray;">
-                <div class="col-lg-12" style="border: 1px solid gray;">
-                    <div class="col-lg-6">
-                    	<form method="post" action="" class="" role="form">
-                        {% csrf_token %}
-                        {{ signin_formset.management_form }}
-                                <br/>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3" for="email">First Name:</label>
-                                    <div class="col-sm-9">
-                                       {{ signin_formset.username_login }}
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="form-group form-field">
-                                    <label class="control-label col-sm-3" for="email">Userame:</label>
-                                    <div class="col-sm-9">
-                                        {{ signin_formset.password_login }}
-                                    </div>
-                                </div><br/>
-                                <div class="form-group form-field">
-                                <label class="control-label col-sm-3" for="email"></label>
-                                <div class="col-sm-9">
-                                    <button type="submit" class="btn btn-default">Login</button>
-                                </div>
-                                </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-6" style="border: 1px solid gray;">
-                    	<form method="post" action="" class="" role="form">
-                        {% csrf_token %}
-                        {{ signup_formset.management_form }}
-                                <br/>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3" for="email">First Name:</label>
-                                    <div class="col-sm-9">
-                                       {{ signup_formset.first_name }}
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="form-group form-field">
-                                    <label class="control-label col-sm-3" for="email">Last Name:</label>
-                                    <div class="col-sm-9">
-                                       {{ signup_formset.last_name }}
-                                    </div>
-                                </div><br/>
-                                <div class="form-group form-field">
-                                    <label class="control-label col-sm-3" for="email">Userame:</label>
-                                    <div class="col-sm-9">
-                                        {{ signup_formset.user_name }}
-                                    </div>
-                                </div><br/>
-                                <div class="form-group form-field">
-                                    <label class="control-label col-sm-3" for="email">Password:</label>
-                                    <div class="col-sm-9">
-                                        {{ signup_formset.password }}
-                                    </div>
-                                </div><br/>
-                                <div class="form-group form-field">
-                                    <label class="control-label col-sm-3" for="email">Email ID:</label>
-                                    <div class="col-sm-9">
-                                        {{ signup_formset.email }}
-                                    </div>
-                                </div><br/>
-                                <div class="form-group form-field">
-                                <label class="control-label col-sm-3" for="email"></label>
-                                <div class="col-sm-9">
-                                    <button type="submit" class="btn btn-default">Sign Up</button>
-                                </div>
-                                </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
         </div>
-        <!-- /.container -->
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'img/background3.jpg' %}" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Contact Us</h4>
+          <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+        </div>
+      </div>
 
     </div>
-    <!-- Page Content -->
+  </div>
 
-	<a  name="services"></a>
-    <div class="content-section-a">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Death to the Stock Photo:<br>Special Thanks</h2>
-                    <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="{% static 'img/ipad.png' %}" alt="">
-                </div>
-            </div>
-
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
         </div>
-        <!-- /.container -->
-
+      </div>
     </div>
-    <!-- /.content-section-a -->
-
-    <div class="content-section-b">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
-                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="{% static 'img/dog.png' %}" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-b -->
-
-    <div class="content-section-a">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="{% static 'img/phones.png' %}" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-a -->
-
-	<a  name="contact"></a>
-    <div class="banner">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <h2>Connect to Start Bootstrap:</h2>
-                </div>
-                <div class="col-lg-6">
-                    <ul class="list-inline banner-social-buttons">
-                        <li>
-                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
+    <div class="parallax"><img src="{% static 'img/background2.jpg' %}" alt="Unsplashed background img 3"></div>
+  </div>
 {% endblock %}

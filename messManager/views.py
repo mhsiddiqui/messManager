@@ -9,17 +9,10 @@ from messManager.models import Question,Choice
 from django.views import generic
 from django.contrib import auth
 from django.core.context_processors import csrf
-<<<<<<< HEAD
-from django.core.mail import send_mail
-
-def login(request):
-    c = {}
-    c.update(csrf(request))
-    return render_to_response('messManager/login.html',c)
-=======
 from messManager.forms import UserCreationForm, Login
 from django.contrib.auth import authenticate, login
->>>>>>> django
+from django.core.mail import send_mail
+
 
 def auth_view(request):
     username = request.POST.get('username','')
@@ -76,7 +69,6 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('messManager:results', args=(p.id,)))
 
-<<<<<<< HEAD
 def mainPage(self):
     return HttpResponseRedirect('/polls')
 
@@ -85,7 +77,7 @@ def send_email(self):
     send_mail('Pangay', '<b>Bold Text</b>.', 'mhassan.eeng@gmail.com',
     ['basit.qc@gmail.com','mhassan.qc@gmail.com'], fail_silently=False, html_message=message_body)
     return HttpResponse('True')
-=======
+
 @csrf_exempt
 def mainPage(request):
     UserCreationFormset= UserCreationForm
@@ -110,4 +102,4 @@ def mainPage(request):
     return render_to_response('messManager/index.html', {'signup_formset': signup_formset,
                                                          'signin_formset': signin_formset},
                               context_instance=RequestContext(request))
->>>>>>> django
+
