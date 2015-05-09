@@ -14,5 +14,4 @@ urlpatterns = [
     url(r'^accounts/invalid/$',views.invalid_login),
     url(r'^sendemail/$',views.send_email)
 
-
 ]

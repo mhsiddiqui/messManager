@@ -1,1 +1,4 @@
+*.pyc
+messManager/*.pyc
+mysite/*.pyc
 /.idea
