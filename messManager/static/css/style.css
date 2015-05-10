@@ -53,3 +53,19 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+.signin-contents{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.radius{
+  border-radius: 10px;
+}
+
+.model-header{
+  padding: 10px 10px 10px 10px;
+  font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+  font-weight: bold;
+}
