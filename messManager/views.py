@@ -113,7 +113,7 @@ def signin(request):
             pass
     else:
         signin_formset = LoginFormset()
-    return render_to_response('messManager/index.html', {
+    return render_to_response('messManager/signin.html', {
                                                          'signin_formset': signin_formset},
                               context_instance=RequestContext(request))
 

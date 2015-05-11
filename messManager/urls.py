@@ -12,6 +12,6 @@ urlpatterns = [
     url(r'^accounts/invalid/$',views.invalid_login),
     url(r'^sendemail/$',views.send_email),
     url(r'^signup/$', views.SignUp.as_view()),
-    url(r'^signup/$', views.signin, name='signin')
+    url(r'^signin/$', views.signin, name='signin')
 
 ]
