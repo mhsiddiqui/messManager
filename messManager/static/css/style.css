@@ -62,10 +62,24 @@ footer.page-footer {
 
 .radius{
   border-radius: 10px;
+  height: 55%;
+  overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .model-header{
   padding: 10px 10px 10px 10px;
   font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
   font-weight: bold;
+}
+
+#no_account{
+  width: 80%;
+  margin: 30px auto auto 8%;
+  padding-left: 8%;
+}
+
+.errorlist{
+  color: red;
 }

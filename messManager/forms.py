@@ -17,11 +17,11 @@ class UserCreationForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs.update({'class' : 'form-control', 'placeholder': 'First Name'})
-        self.fields['last_name'].widget.attrs.update({'class' : 'form-control', 'placeholder': 'Last Name'})
-        self.fields['user_name'].widget.attrs.update({'class' : 'form-control', 'placeholder': 'Username'})
-        self.fields['password'].widget.attrs.update({'class' : 'form-control', 'placeholder': 'Password'})
-        self.fields['email'].widget.attrs.update({'class' : 'form-control', 'placeholder': 'Email ID'})
+        self.fields['first_name'].widget.attrs.update({'class' : 'validate'})
+        self.fields['last_name'].widget.attrs.update({'class' : 'validate'})
+        self.fields['user_name'].widget.attrs.update({'class' : 'validate'})
+        self.fields['password'].widget.attrs.update({'class' : 'validate'})
+        self.fields['email'].widget.attrs.update({'class' : 'validate'})
 
     def save(self):
 
@@ -30,7 +30,8 @@ class UserCreationForm(forms.Form):
         lname = self.cleaned_data['last_name']
         email = self.cleaned_data['email']
         passwrd = self.cleaned_data['password']
-        user = User(username=username, first_name=fname, last_name=lname, email=email, password=passwrd)
+        user = User(username=username, first_name=fname, last_name=lname, email=email)
+        user.set_password(passwrd)
         user.save()
 
 class Login(forms.Form):
