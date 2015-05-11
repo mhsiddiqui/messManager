@@ -39,8 +39,12 @@ INSTALLED_APPS = (
     'messManager'
 )
 
+LOGIN_URL = '/signin/'
+
 LOGIN_EXEMPT_URLS = (
- r'^account/', # allow the entire /legal/* subsection
+ r'^', # allow the entire /legal/* subsection
+ r'^signin/', # allow the entire /legal/* subsection
+ r'^signup/', # allow the entire /legal/* subsection
 )
 
 MIDDLEWARE_CLASSES = (
