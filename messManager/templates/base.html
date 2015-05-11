@@ -35,6 +35,7 @@
         <li><a href="#"><span class="teal-text text-accent-1">Page1</span></a></li>
         <li><a href="#"><span class="teal-text text-accent-1">Page2</span></a></li>
         <li><a href="#"><span class="teal-text text-accent-1">Page3</span></a></li>
+        {% if user.is_authenticated %}<li><a href="/logout"><span class="teal-text text-accent-1">Logout</span></a></li>{% endif %}
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
