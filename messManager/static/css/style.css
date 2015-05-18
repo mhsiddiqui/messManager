@@ -82,4 +82,6 @@ footer.page-footer {
 
 .errorlist{
   color: red;
+  font-size: 9pt;
+  margin-left: 10%;
 }

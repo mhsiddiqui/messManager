@@ -21,8 +21,9 @@ SECRET_KEY = 'tocpwhxz37y62r$)1z1ikp6c(&_+8f@-=^_&6bd=!x6)uf$tel'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+LOCAL_DEBUG = DEBUG
 
-TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -102,3 +103,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'mhassan.eeng@gmail.com'
 EMAIL_HOST_PASSWORD = 'hassan91'
 EMAIL_PORT = 587
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

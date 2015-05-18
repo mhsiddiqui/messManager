@@ -123,4 +123,10 @@
             &nbsp;&nbsp;<a href="/signup" class="waves-effect waves-light">Sign Up</a>
           </div>
         </div>
+    {% if success and success != '' %}
+    <script type="text/javascript">
+            Materialize.toast('{{ success }}', 1000, 'rounded')
+
+    </script>
+ {% endif %}
 {% endblock %}

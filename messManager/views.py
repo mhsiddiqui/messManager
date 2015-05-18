@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.forms import formset_factory
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -99,22 +100,30 @@ def mainPage(request):
                                                          'signin_formset': signin_formset},
                               context_instance=RequestContext(request))
 
+@csrf_exempt
 def signin(request):
     LoginFormset = Login
+    success_msg = ''
+    error_msg = ''
     if request.method == 'POST':
         signin_formset = LoginFormset(request.POST, request.FILES)
-        user = authenticate(username=request.POST['username_login'], password=request.POST['password_login'])
-        if user.is_active:
-            login(request, user)
-            print("User is valid, active and authenticated")
-        else:
-            print("The password is valid, but the account has been disabled!")
         if signin_formset.is_valid():
-            pass
+            user = authenticate(username=request.POST['username_login'], password=request.POST['password_login'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    request.user = user
+                    now = datetime.now()
+                    request.session['last_activity'] = now
+                    success_msg = 'Login Successfull'
+
+                else:
+                    error_msg = 'invalid Login'
     else:
         signin_formset = LoginFormset()
     return render_to_response('messManager/signin.html', {
-                                                         'signin_formset': signin_formset},
+                                                         'signin_formset': signin_formset, 'success': success_msg,
+                                                         'error': error_msg},
                               context_instance=RequestContext(request))
 
 
@@ -135,6 +144,7 @@ class SignUp(RedirectView):
         formset = self.signup_form(request.POST, request.FILES)
         if formset.is_valid():
             formset.save()
+            return HttpResponseRedirect('/signin')
             
         return render_to_response('messManager/signup.html', {
                                                          'formset': formset},

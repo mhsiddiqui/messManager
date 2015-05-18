@@ -13,14 +13,11 @@
     <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/landing-page.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <!-- Custom Fonts -->
     <link rel="stylesheet" type="text/css" href="{% static 'font/css/font-awesome.min.css' %}" />
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="{% load static %}{% get_static_prefix as STATIC_PREFIX %}{{ STATIC_PREFIX }}img/favicon.ico" type="image/ico">
 
     <title>{% block title %}Mess Manager{% endblock %}</title>
@@ -28,21 +25,46 @@
 
 </head>
 <body>
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
 <div class="navbar-fixed">
   <nav class="teal darken-3" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="/" class="brand-logo"><span class="teal-text text-accent-1">Mess Manager</span></a>
-      <ul class="right hide-on-med-and-down">
+      <a id="logo-container" href="/" class="brand-logo center"><span class="teal-text text-accent-1">Mess Manager</span></a>
+      <ul class="left hide-on-med-and-down">
         <li><a href="#"><span class="teal-text text-accent-1">Page1</span></a></li>
         <li><a href="#"><span class="teal-text text-accent-1">Page2</span></a></li>
         <li><a href="#"><span class="teal-text text-accent-1">Page3</span></a></li>
-        {% if user.is_authenticated %}<li><a href="/logout"><span class="teal-text text-accent-1">Logout</span></a></li>{% endif %}
+      </ul>
+      <ul class="right hide-on-med-and-down">
+          <!-- Dropdown Trigger -->
+          {% if user.is_authenticated %}
+          <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">
+              {{ user.first_name }}
+              <i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+          {% else %}
+              <li><a href="/signin/"><span class="teal-text text-accent-1">Sign In</span></a></li>
+          {% endif %}
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Page1</a></li>
         <li><a href="#">Page2</a></li>
         <li><a href="#">Page3</a></li>
+        <li class="divider"></li>
+        {% if user.is_authenticated %}
+            <li><a href="#">{{ user.first_name }}</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="/logout">Logout</a></li>
+          {% else %}
+              <li><a href="/signin/">Sign In</a></li>
+          {% endif %}
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
@@ -57,7 +79,7 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          <p class="grey-text text-lighten-4">This is just a practice application with Django.</p>
 
 
         </div>
@@ -70,20 +92,11 @@
             <li><a class="white-text" href="#!">Link 4</a></li>
           </ul>
         </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">M Hassan Siddiqui</a>
       </div>
     </div>
   </footer>
