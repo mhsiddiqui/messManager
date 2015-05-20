@@ -42,5 +42,5 @@ class Login(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(Login, self).__init__(*args, **kwargs)
-        self.fields['username_login'].widget.attrs.update({'class' : 'validate'})
-        self.fields['password_login'].widget.attrs.update({'class' : 'validate'})
+        self.fields['username_login'].widget.attrs.update({'class': 'validate', 'placeholder': 'Username'})
+        self.fields['password_login'].widget.attrs.update({'class': 'validate', 'placeholder': 'Password'})

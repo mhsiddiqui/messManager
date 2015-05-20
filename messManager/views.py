@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, render,render_to_response
 from django.template import RequestContext, loader
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, View
 from messManager.models import Question,Choice
 from django.views import generic
 from django.contrib import auth
@@ -86,14 +86,15 @@ def mainPage(request):
     LoginFormset = Login
     if request.method == 'POST':
         signin_formset = LoginFormset(request.POST, request.FILES)
-        user = authenticate(username=request.POST['username_login'], password=request.POST['password_login'])
-        if user.is_active:
-            login(request, user)
-            print("User is valid, active and authenticated")
-        else:
-            print("The password is valid, but the account has been disabled!")
         if signin_formset.is_valid():
-            pass
+            user = authenticate(username=request.POST['username_login'], password=request.POST['password_login'])
+            if user.is_active:
+                login(request, user)
+                request.user = user
+                now = datetime.now()
+                request.session['last_activity'] = now
+            else:
+                print("The password is valid, but the account has been disabled!")
     else:
         signin_formset = LoginFormset()
     return render_to_response('messManager/index.html', {
@@ -116,7 +117,7 @@ def signin(request):
                     now = datetime.now()
                     request.session['last_activity'] = now
                     success_msg = 'Login Successfull'
-
+                    return HttpResponseRedirect('/admin_panel/')
                 else:
                     error_msg = 'invalid Login'
     else:
@@ -149,3 +150,14 @@ class SignUp(RedirectView):
         return render_to_response('messManager/signup.html', {
                                                          'formset': formset},
                               context_instance=RequestContext(request))
+
+
+class AdminPanel(View):
+
+    def dispatch(self, request, *args, **kwargs):
+        return super(AdminPanel, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return render_to_response('messManager/panel/panel_home.html',
+                                    {'Corporation_Name': 'Django'},
+                                  context_instance=RequestContext(request))

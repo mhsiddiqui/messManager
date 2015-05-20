@@ -22,25 +22,12 @@
 
     <title>{% block title %}Mess Manager{% endblock %}</title>
 
-
 </head>
 <body>
-<ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="/logout">Logout</a></li>
-</ul>
 <div class="navbar-fixed">
   <nav class="teal darken-3" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="/" class="brand-logo center"><span class="teal-text text-accent-1">Mess Manager</span></a>
-      <ul class="left hide-on-med-and-down">
-        <li><a href="#"><span class="teal-text text-accent-1">Page1</span></a></li>
-        <li><a href="#"><span class="teal-text text-accent-1">Page2</span></a></li>
-        <li><a href="#"><span class="teal-text text-accent-1">Page3</span></a></li>
-      </ul>
-      <ul class="right hide-on-med-and-down">
+    <div class="nav-wrapper" id="nav-bar-wrap">
+      <ul class="right hide-on-med-and-down" id="top-nav">
           <!-- Dropdown Trigger -->
           {% if user.is_authenticated %}
           <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">
@@ -51,7 +38,7 @@
           {% endif %}
       </ul>
 
-      <ul id="nav-mobile" class="side-nav">
+      <ul id="nav-mobile" class="side-nav fixed teal darken-3">
         <li><a href="#">Page1</a></li>
         <li><a href="#">Page2</a></li>
         <li><a href="#">Page3</a></li>
@@ -70,41 +57,11 @@
     </div>
   </nav>
 </div>
+
 {% block content %}
+
 {% endblock %}
 
-
-  <footer class="page-footer teal">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">This is just a practice application with Django.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">M Hassan Siddiqui</a>
-      </div>
-    </div>
-  </footer>
-
-
-  <!--  Scripts-->
-
-
-  </body>
+</body>
 
 </html>
