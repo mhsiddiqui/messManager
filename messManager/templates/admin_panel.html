@@ -23,7 +23,14 @@
     <title>{% block title %}Mess Manager{% endblock %}</title>
 
 </head>
-<body>
+<body data-twttr-rendered="True">
+<header>
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
 <div class="navbar-fixed">
   <nav class="teal darken-3" role="navigation">
     <div class="nav-wrapper" id="nav-bar-wrap">
@@ -37,31 +44,34 @@
               <li><a href="/signin/"><span class="teal-text text-accent-1">Sign In</span></a></li>
           {% endif %}
       </ul>
-
-      <ul id="nav-mobile" class="side-nav fixed teal darken-3">
-        <li><a href="#">Page1</a></li>
-        <li><a href="#">Page2</a></li>
-        <li><a href="#">Page3</a></li>
-        <li class="divider"></li>
-        {% if user.is_authenticated %}
-            <li><a href="#">{{ user.first_name }}</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Settings</a></li>
-            <li class="divider"></li>
-            <li><a href="/logout">Logout</a></li>
+        <ul class="right show-on-medium-and-down">
+         {% if user.is_authenticated %}
+            <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">
+              <span class="teal-text text-accent-1">{{ user.first_name }}</span>
+              <i class="mdi-navigation-arrow-drop-down right"></i></a></li>
           {% else %}
-              <li><a href="/signin/">Sign In</a></li>
+              <li><a href="/signin/"><span class="teal-text text-accent-1">Sign In</span></a></li>
           {% endif %}
+        </ul>
+
+        <div><a id="logo-container-admin" href="/" class="brand-logo center"><span class="teal-text text-accent-1">Mess Manager</span></a></div>
+        <ul id="nav-mobile" class="side-nav fixed teal darken-3">
+        <li><a href="/" class="waves-effect waves-teal">Home</a></li>
+        <li><a href="#" class="waves-effect waves-teal">Page2</a></li>
+        <li><a href="#" class="waves-effect waves-teal">Page3</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
   </nav>
 </div>
-
+</header>
+<div class="row">
+<div class="col s12 m12 l10 offset-l2" style="border: 1px solid black;">
 {% block content %}
 
 {% endblock %}
-
+</div>
+</div>
 </body>
 
 </html>

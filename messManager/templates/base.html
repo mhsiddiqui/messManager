@@ -43,6 +43,7 @@
       <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
           {% if user.is_authenticated %}
+          <li><a href="/admin_panel"><span class="teal-text text-accent-1">Dashboard</span></a></li>
           <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">
               <span class="teal-text text-accent-1">{{ user.first_name }}</span>
               <i class="mdi-navigation-arrow-drop-down right"></i></a></li>
