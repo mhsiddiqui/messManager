@@ -93,6 +93,7 @@ def mainPage(request):
                 request.user = user
                 now = datetime.now()
                 request.session['last_activity'] = now
+                return HttpResponseRedirect('/admin_panel/')
             else:
                 print("The password is valid, but the account has been disabled!")
     else:
