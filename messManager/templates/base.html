@@ -25,12 +25,23 @@
 
 </head>
 <body>
-<ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="/logout">Logout</a></li>
-</ul>
+<div class="login_info round_corners card teal lighten-5" id="login_info_div" style="position:absolute">
+	<div class="card-content">
+              <div>
+                  <table>
+                      <tr>
+                          <td style="padding: 0px;"><img id="drop-down-img" src="{% static 'img/no-prfile-pic.jpg' %}"
+                                                                     alt="" class="responsive-img"></td>
+                          <td><span class="card-title teal-text text-darken-4">{{ user.first_name }}&nbsp;{{ user.last_name }}</span></td>
+                      </tr>
+                  </table>
+              </div>
+            </div>
+            <div class="card-action" style="padding: 1px 5px 1px 10px;">
+              <a href="#"><span class="teal-text text-accent-4">Profile&nbsp;<i class="mdi-action-perm-identity"></i></span></a>
+              <a style="margin-left: 70px;" href="/logout">Logout&nbsp;<i class="mdi-action-exit-to-app"></i></a>
+            </div>
+</div>
 <div class="navbar-fixed">
   <nav class="teal darken-3" role="navigation">
     <div class="nav-wrapper container">
@@ -38,22 +49,23 @@
       <ul class="left hide-on-med-and-down">
         <li><a href="#"><span class="teal-text text-accent-1">Page1</span></a></li>
         <li><a href="#"><span class="teal-text text-accent-1">Page2</span></a></li>
-        <li><a href="#"><span class="teal-text text-accent-1">Page3</span></a></li>
+        {% if user.is_authenticated %}
+          <li><a href="/admin_panel"><span class="teal-text text-accent-1 mdi-action-dashboard"> Admin</span></a></li>
+        {% endif %}
       </ul>
       <ul class="right hide-on-med-and-down">
-          <!-- Dropdown Trigger -->
           {% if user.is_authenticated %}
-          <li><a href="/admin_panel"><span class="teal-text text-accent-1">Dashboard</span></a></li>
-          <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">
-              <span class="teal-text text-accent-1">{{ user.first_name }}</span>
-              <i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+          <li><a href="#!" onClick="show_login_div(this, 1);" class="btn-floating profile-view-btn">
+              <img src="{% static 'img/no-prfile-pic.jpg' %}" alt="" class="circle responsive-img profile-pic-thumbnail"></a></li>
           {% else %}
               <li><a href="/signin/"><span class="teal-text text-accent-1">Sign In</span></a></li>
           {% endif %}
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Page1</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="/admin_panel"><span class="mdi-action-dashboard"> Admin</span></a></li>
+        {% endif %}
         <li><a href="#">Page2</a></li>
         <li><a href="#">Page3</a></li>
         <li class="divider"></li>

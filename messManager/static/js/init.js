@@ -20,7 +20,7 @@
 })(jQuery); // end of jQuery name space
 $( window ).resize(function() {
           var window_width = $(window).width();
-          if (window_width<=434){
+          if (window_width<=500){
                   $('.brand-logo').css('font-size','14pt');
                 }
           else{
@@ -28,7 +28,7 @@ $( window ).resize(function() {
           }
 
 });
-function show_login_div(element)
+function show_login_div(element, type)
 {
 	var offset = $( element ).offset();
 	var height = $(element).height();
@@ -38,8 +38,14 @@ function show_login_div(element)
         top_position = 48;
         adj = 0;
     }
+    if(type==1){
+        right = 237;
+    }
+    else{
+        right = offset.top-adj
+    }
 	if ($('#login_info_div').css('display') == 'none') {
-	 $("#login_info_div" ).css({ top:top_position+3, right:offset.top-adj });
+	 $("#login_info_div" ).css({ top:top_position+3, right: right });
 	 $("#login_info_div").show();
 	 }
 	 else
@@ -47,3 +53,6 @@ function show_login_div(element)
 	   $("#login_info_div").hide();
 	 }
 }
+$(window).click(function(){
+    console.log('das');
+});
