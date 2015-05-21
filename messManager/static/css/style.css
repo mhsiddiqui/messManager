@@ -85,3 +85,52 @@ footer.page-footer {
   font-size: 9pt;
   margin-left: 10%;
 }
+.profile-pic-thumbnail{
+  height: 35px;
+  width: 35px;
+}
+
+.login_info { width: 300px;
+		height:150px;
+		border: thin solid #CCCCCC;
+		display:block;
+		background-color:#FFF;
+		overflow:visible;
+		z-index:99999;
+		}
+     .login_info:after{ /*arrow added to uparrowdiv DIV*/
+		content:'';
+		display:block;
+		position:absolute;
+		top:-20px; /*should be set to -border-width x 2 */
+		left:270px;
+		width:0;
+		height:0;
+		border-color: transparent transparent #FFFFFF transparent; /*border color should be same as div div background color*/
+		border-style: solid;
+		border-width: 10px;
+		overflow:visible;
+
+		}
+		.round_corners{
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		border-radius: 8px;
+		}
+		.round_corners_up{
+		-webkit-border-radius: 15px 15px 0px 0px;
+		-moz-border-radius: 15px 15px 0px 0px;
+		border-radius: 15px 15px 0px 0px;
+		}
+		.round_corners_bottom{
+		-webkit-border-radius: 0px 0px 15px 15px;
+		-moz-border-radius: 0px 0px 15px 15px
+		;border-radius: 0px 0px 15px 15px;
+		}
+
+     .profile-view-btn{
+       border-radius: 50px;
+       margin-right: 13px;
+       width: 35px;
+       height: 35px;
+     }

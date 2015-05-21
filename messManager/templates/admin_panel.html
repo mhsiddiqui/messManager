@@ -26,7 +26,7 @@
 <body data-twttr-rendered="True">
 <header>
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
+  <li><a href="#!">{{ user.first_name }}</a></li>
   <li><a href="#!">two</a></li>
   <li class="divider"></li>
   <li><a href="/logout">Logout</a></li>
@@ -34,27 +34,17 @@
 <div class="navbar-fixed">
   <nav class="teal darken-3" role="navigation">
     <div class="nav-wrapper" id="nav-bar-wrap">
-      <ul class="right hide-on-med-and-down" id="top-nav">
+      <ul class="right">
           <!-- Dropdown Trigger -->
           {% if user.is_authenticated %}
-          <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">
-              <span class="teal-text text-accent-1">{{ user.first_name }}</span>
-              <i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+          <li><a href="#!" onClick="show_login_div(this);" class="btn-floating profile-view-btn">
+              <img src="{% static 'img/no-prfile-pic.jpg' %}" alt="" class="circle responsive-img profile-pic-thumbnail"></a></li>
           {% else %}
               <li><a href="/signin/"><span class="teal-text text-accent-1">Sign In</span></a></li>
           {% endif %}
       </ul>
-        <ul class="right show-on-medium-and-down">
-         {% if user.is_authenticated %}
-            <li><a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown1">
-              <span class="teal-text text-accent-1">{{ user.first_name }}</span>
-              <i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-          {% else %}
-              <li><a href="/signin/"><span class="teal-text text-accent-1">Sign In</span></a></li>
-          {% endif %}
-        </ul>
 
-        <div><a id="logo-container-admin" href="/" class="brand-logo center"><span class="teal-text text-accent-1">Mess Manager</span></a></div>
+        <div><a id="logo-container-admin" href="/" class="brand-logo center"><span class="teal-text text-accent-1">Django Practice</span></a></div>
         <ul id="nav-mobile" class="side-nav fixed teal darken-3">
         <li><a href="/" class="waves-effect waves-teal">Home</a></li>
         <li><a href="#" class="waves-effect waves-teal">Page2</a></li>
@@ -67,6 +57,15 @@
 </header>
 <div class="row">
 <div class="col s12 m12 l10 offset-l2" style="border: 1px solid black;">
+<div class="login_info round_corners card blue-grey darken-1" id="login_info_div" style="position:absolute">
+	<div class="card-content white-text">
+              <span class="card-title">{{ user.first_name }}&nbsp;{{ user.last_name }}</span>
+            </div>
+            <div class="card-action">
+              <a href="#">Profile</a>
+              <a href="/logout">Logout</a>
+            </div>
+</div>
 {% block content %}
 
 {% endblock %}
