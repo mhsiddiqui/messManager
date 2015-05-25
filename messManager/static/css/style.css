@@ -137,3 +137,6 @@ footer.page-footer {
      #drop-down-img{
         height: 60px;
      }
+     select {
+        display: block;
+     }

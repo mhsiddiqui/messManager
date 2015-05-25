@@ -1,12 +1,6 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, UserManager
 from django import forms
-
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
+from django.forms import ModelForm
 
 class UserCreationForm(forms.Form):
     first_name = forms.CharField(label='First Name')
@@ -14,6 +8,7 @@ class UserCreationForm(forms.Form):
     user_name = forms.CharField(label='Username')
     password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     email = forms.EmailField(label='Email id')
+    user_type = forms.ModelChoiceField(queryset=Group.objects.all())
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
@@ -22,6 +17,7 @@ class UserCreationForm(forms.Form):
         self.fields['user_name'].widget.attrs.update({'class' : 'validate'})
         self.fields['password'].widget.attrs.update({'class' : 'validate'})
         self.fields['email'].widget.attrs.update({'class' : 'validate'})
+        self.fields['user_type'].widget.attrs.update({})
 
     def save(self):
 
@@ -30,9 +26,12 @@ class UserCreationForm(forms.Form):
         lname = self.cleaned_data['last_name']
         email = self.cleaned_data['email']
         passwrd = self.cleaned_data['password']
+        user_type = self.cleaned_data['user_type']
         user = User(username=username, first_name=fname, last_name=lname, email=email)
         user.set_password(passwrd)
         user.save()
+        user_type.user_set.add(user)
+
 
 class Login(forms.Form):
 

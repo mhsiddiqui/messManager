@@ -7,44 +7,9 @@
                 <div class="card-content">
                     <span class="teal-text">Fill the form and submit it. You will get an email regarding you account details.</span>
                     <form method="post" action="" style="width: 80%; margin-top: 20px; margin-left: auto; margin-right: auto;">
-                        <table style="border-collapse: collapse;">
-                        <tr><td>{{ formset.first_name.errors }}
-                        <div class="input-field">
-
-                        <i class="mdi-action-account-circle prefix"></i>
-                        {{ formset.first_name }}
-                        <label for="id_first_name">First Name</label>
-                        </div>
-
-                        </td><td>{{ formset.last_name.errors }}
-                        <div class="input-field">
-                        <i class="mdi-action-account-circle prefix"></i>
-                        {{ formset.last_name }}
-                        <label for="id_last_name">Last Name</label>
-                        </div>
-                        </td></tr>
-                        <tr><td>{{ formset.user_name.errors }}
-                        <div class="input-field">
-                        <i class="mdi-action-account-circle prefix"></i>
-                        {{ formset.user_name }}
-                        <label for="id_user_name">Username</label>
-                        </div>
-                        </td><td>{{ formset.password.errors }}
-                        <div class="input-field">
-                        <i class="mdi-action-account-circle prefix"></i>
-                        {{ formset.password }}
-                        <label for="id_password">Password</label>
-                        </div>
-                        </td></tr>
-                        <tr><td>{{ formset.email.errors }}
-                        <div class="input-field">
-                        <i class="mdi-action-account-circle prefix"></i>
-                        {{ formset.email }}
-                        <label for="id_email">Email</label>
-                        </div>
-                        </td><td></td></tr>
+                        <table>
+                            {{ formset }}
                         </table>
-
                         <br/>
                         <div style=" margin-top: 20px; margin-left: 8%;">
                         <button class="btn waves-effect waves-light" type="submit" name="action" style="border-radius: 10px;">Sign Up
