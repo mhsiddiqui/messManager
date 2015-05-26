@@ -25,21 +25,21 @@
 
 </head>
 <body>
-<div class="login_info round_corners card teal lighten-5" id="login_info_div" style="position:absolute">
-	<div class="card-content">
-              <div>
-                  <table>
-                      <tr>
-                          <td style="padding: 0px;"><img id="drop-down-img" src="{% static 'img/no-prfile-pic.jpg' %}"
-                                                                     alt="" class="responsive-img"></td>
-                          <td><span class="card-title teal-text text-darken-4">{{ user.first_name }}&nbsp;{{ user.last_name }}</span></td>
+<div class="login_info round_corners card teal lighten-5 login-div-class" id="login_info_div" style="position:absolute">
+	<div class="card-content login-div-class">
+              <div class="login-div-class">
+                  <table class="login-div-class">
+                      <tr class="login-div-class">
+                          <td class="login-div-class" style="padding: 0px;"><img id="drop-down-img" src="{% static 'img/no-prfile-pic.jpg' %}"
+                                                                     alt="" class="responsive-img login-div-class"></td>
+                          <td class="login-div-class"><span class="card-title teal-text text-darken-4 login-div-class">{{ user.first_name }}&nbsp;{{ user.last_name }}</span></td>
                       </tr>
                   </table>
               </div>
             </div>
-            <div class="card-action" style="padding: 1px 5px 1px 10px;">
-              <a href="#"><span class="teal-text text-accent-4">Profile&nbsp;<i class="mdi-action-perm-identity"></i></span></a>
-              <a style="margin-left: 70px;" href="/logout">Logout&nbsp;<i class="mdi-action-exit-to-app"></i></a>
+            <div class="card-action login-div-class" style="padding: 1px 5px 1px 10px;">
+              <a class="login-div-class" href="#"><span class="teal-text text-accent-4 login-div-class">Profile&nbsp;<i class="mdi-action-perm-identity login-div-class"></i></span></a>
+              <a class="login-div-class" style="margin-left: 70px;" href="/logout">Logout&nbsp;<i class="mdi-action-exit-to-app login-div-class"></i></a>
             </div>
 </div>
 <div class="navbar-fixed">
@@ -55,8 +55,8 @@
       </ul>
       <ul class="right hide-on-med-and-down">
           {% if user.is_authenticated %}
-          <li><a href="#!" onClick="show_login_div(this, 1);" class="btn-floating profile-view-btn">
-              <img src="{% static 'img/no-prfile-pic.jpg' %}" alt="" class="circle responsive-img profile-pic-thumbnail"></a></li>
+          <li class="login-div-class"><a href="#!" onClick="show_login_div(this, 1);" class="btn-floating profile-view-btn login-div-class">
+              <img src="{% static 'img/no-prfile-pic.jpg' %}" alt="" class="circle responsive-img profile-pic-thumbnail login-div-class"></a></li>
           {% else %}
               <li><a href="/signin/"><span class="teal-text text-accent-1">Sign In</span></a></li>
           {% endif %}
