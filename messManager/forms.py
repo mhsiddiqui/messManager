@@ -27,7 +27,10 @@ class UserCreationForm(forms.Form):
         email = self.cleaned_data['email']
         passwrd = self.cleaned_data['password']
         user_type = self.cleaned_data['user_type']
-        user = User(username=username, first_name=fname, last_name=lname, email=email)
+        is_staff = False
+        if str(user_type.name) == 'Administrator':
+            is_staff = True
+        user = User(username=username, first_name=fname, last_name=lname, email=email, is_staff=is_staff)
         user.set_password(passwrd)
         user.save()
         user_type.user_set.add(user)

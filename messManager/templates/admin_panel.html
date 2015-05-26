@@ -53,7 +53,7 @@
 <div class="login_info round_corners card teal lighten-5" id="login_info_div" style="position:absolute">
 	<div class="card-content">
               <div>
-                  <table>
+                  <table id="login_div_table">
                       <tr>
                           <td style="padding: 0px;"><img id="drop-down-img" src="{% static 'img/no-prfile-pic.jpg' %}"
                                                                      alt="" class="responsive-img"></td>
@@ -62,7 +62,7 @@
                   </table>
               </div>
             </div>
-            <div class="card-action" style="padding: 1px 5px 1px 10px;">
+            <div class="card-action" style="padding: 1px 5px 1px 10px;" id="login_div_logout">
               <a href="#"><span class="teal-text text-accent-4">Profile&nbsp;<i class="mdi-action-perm-identity"></i></span></a>
               <a style="margin-left: 70px;" href="/logout">Logout&nbsp;<i class="mdi-action-exit-to-app"></i></a>
             </div>

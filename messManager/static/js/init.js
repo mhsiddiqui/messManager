@@ -53,6 +53,14 @@ function show_login_div(element, type)
 	   $("#login_info_div").hide();
 	 }
 }
-$(window).click(function(){
-    console.log('das');
+$(window).click(function(e){
+    var t1 = $('#login_info_div');
+    var t2 = $('#login_div_table');
+    var t3 = $('login_div_logout');
+    console.log(e.target);
+    console.log(t1.is(e.target) || t2.is(e.target) || t3.is(e.target));
+    if($('#login_info_div').css('display')=='block'){
+        console.log(e.target);
+    }
+
 });
