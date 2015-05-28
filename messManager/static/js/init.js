@@ -8,9 +8,12 @@
      $('.modal-trigger').leanModal();
      $(".dropdown-button").dropdown( {});
       var window_width = $(window).width();
-          if (window_width<434){
+          if (window_width<=500 && window_width>=310){
                   $('.brand-logo').css('font-size','15pt');
                 }
+          else if(window_width<310){
+              $('.brand-logo').css('font-size','13pt');
+          }
           else{
               $('.brand-logo').css('font-size','31.5px');
           }
@@ -20,9 +23,12 @@
 })(jQuery); // end of jQuery name space
 $( window ).resize(function() {
           var window_width = $(window).width();
-          if (window_width<=500){
-                  $('.brand-logo').css('font-size','14pt');
+          if (window_width<=500 && window_width>=310){
+                  $('.brand-logo').css('font-size','15pt');
                 }
+          else if(window_width<310){
+              $('.brand-logo').css('font-size','13pt');
+          }
           else{
               $('.brand-logo').css('font-size','31.5px');
           }
@@ -54,7 +60,6 @@ function show_login_div(element, type)
 	 }
 }
 $(window).click(function(e){
-    console.log(e.target);
     if($('#login_info_div').css('display')=='block' && !$('.login-div-class').is(e.target)){
         $('#login_info_div').hide();
     }

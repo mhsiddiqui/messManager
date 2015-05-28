@@ -1,3 +1,4 @@
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>{% load staticfiles %}
@@ -40,8 +41,11 @@
         <div><a id="logo-container-admin" href="/" class="brand-logo center"><span class="teal-text text-accent-1">Django Practice</span></a></div>
         <ul id="nav-mobile" class="side-nav fixed teal darken-3">
         <li><a href="/" class="waves-effect waves-teal"><span class=" medium mdi-action-home"></span>&nbsp;&nbsp;Home</a></li>
-        <li><a href="#" class="waves-effect waves-teal">Page2</a></li>
-        <li><a href="#" class="waves-effect waves-teal">Page3</a></li>
+        {% with user|get_navigation as sub_navigations %}
+		  {% for sub_menu in sub_navigations %}
+            <li><a href="#" class="waves-effect waves-teal">{{ sub_menu.name }}</a></li>
+		    {% endfor %}
+        {%endwith%}
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>

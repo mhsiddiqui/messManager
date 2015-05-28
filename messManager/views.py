@@ -17,6 +17,8 @@ from django.core.context_processors import csrf
 from messManager.forms import Login, UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
+from reportlab.graphics.shapes import Drawing, String
+from reportlab.graphics.charts.barcharts import HorizontalBarChart
 
 
 def auth_view(request):

@@ -12,6 +12,5 @@ urlpatterns = [
     url(r'^sendemail/$',views.send_email),
     url(r'^signup/$', views.SignUp.as_view()),
     url(r'^signin/$', views.signin, name='signin'),
-    url(r'^admin_panel/$', views.AdminPanel.as_view())
-
+    url(r'^admin_panel/$', views.AdminPanel.as_view()),
 ]

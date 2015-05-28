@@ -57,7 +57,7 @@ work, ensure your TEMPLATE_CONTEXT_PROCESSORS setting includes\
 
         if not request.user.is_authenticated():
             path = request.path_info.lstrip('/')
-            if not any(m.match(path) for m in EXEMPT_URLS):
+            if not any(m.match(path) for m in EXEMPT_URLS) and path != '':
                 return HttpResponseRedirect(settings.LOGIN_URL)
 
         if SESSION_KEY not in request.session:
@@ -65,7 +65,7 @@ work, ensure your TEMPLATE_CONTEXT_PROCESSORS setting includes\
             nextURL = ''
             if path and path.find('.') == -1 and path != 'accounts/login/':
                 nextURL = '?next='+path
-            if not any(m.match(path) for m in EXEMPT_URLS):
+            if not any(m.match(path) for m in EXEMPT_URLS) and path != '':
                 return HttpResponseRedirect(settings.LOGIN_URL + nextURL)
         last_activity = request.session.get('last_activity', None)
         now = datetime.datetime.now()

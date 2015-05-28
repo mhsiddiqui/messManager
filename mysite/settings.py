@@ -43,7 +43,6 @@ INSTALLED_APPS = (
 LOGIN_URL = '/signin/'
 
 LOGIN_EXEMPT_URLS = (
- r'^', # allow the entire /legal/* subsection
  r'^signin/', # allow the entire /legal/* subsection
  r'^signup/', # allow the entire /legal/* subsection
 )
