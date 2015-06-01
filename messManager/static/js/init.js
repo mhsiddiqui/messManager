@@ -6,7 +6,9 @@
     });
      $('.parallax').parallax();
      $('.modal-trigger').leanModal();
-     $(".dropdown-button").dropdown( {});
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
       var window_width = $(window).width();
           if (window_width<=500 && window_width>=310){
                   $('.brand-logo').css('font-size','15pt');

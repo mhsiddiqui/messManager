@@ -140,3 +140,7 @@ footer.page-footer {
      select {
         display: block;
      }
+     .signup-form{
+         margin: 10px 10% 10px 10%;
+         width: 80%;
+     }

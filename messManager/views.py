@@ -10,79 +10,18 @@ from django.template import RequestContext, loader
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import RedirectView, View
-from messManager.models import Question,Choice
 from django.views import generic
 from django.contrib import auth
 from django.core.context_processors import csrf
 from messManager.forms import Login, UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
-from reportlab.graphics.shapes import Drawing, String
-from reportlab.graphics.charts.barcharts import HorizontalBarChart
 
-
-def auth_view(request):
-    username = request.POST.get('username','')
-    password = request.POST.get('password','')
-    user = auth.authenticate(username=username,password=password)
-    if user is not None:
-        auth.login(request,user)
-        return HttpResponseRedirect('/polls')
-    else:
-        return HttpResponseRedirect('/accounts/invalid/')
-
-def invalid_login(request):
-    invalid_login = True
-    dic = {'invalid_login':invalid_login}
-    return render_to_response('messManager/login.html',dic)
-
-def logout(request):
-    return HttpResponse('Logged Out')
-
-
-class IndexView(generic.ListView):
-    template_name = 'messManager/index.html'
-    context_object_name = 'latest_question_list'
-
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
-
-
-class DetailView(generic.DetailView):
-    model = Question
-    template_name = 'messManager/detail.html'
-
-
-class ResultsView(generic.DetailView):
-    model = Question
-    template_name = 'messManager/results.html'
-
-def vote(request, question_id):
-    p = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = p.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'messManager/detail.html', {
-            'question': p,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('messManager:results', args=(p.id,)))
-
-def mainPage(self):
-    return HttpResponseRedirect('/polls')
 
 def send_email(self):
     message_body = 'Hi this is email send through django application made by M Hassan Siddiqui. There is also attached an image.<img src="http://i59.tinypic.com/zv3769.png"/>'
-    send_mail('Pangay', '<b>Bold Text</b>.', 'mhassan.eeng@gmail.com',
-    ['basit.qc@gmail.com','mhassan.qc@gmail.com'], fail_silently=False, html_message=message_body)
+    send_mail('Pangay', '<b>Bold Text</b>.', 'mhassan@messManager.com',
+    ['mhassan.qc@gmail.com'], fail_silently=False, html_message=message_body)
     return HttpResponse('True')
 
 @csrf_exempt
