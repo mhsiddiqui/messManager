@@ -1,5 +1,6 @@
 from django import template
 from django.contrib.auth.models import Permission
+from ..models import Mess
 
 register = template.Library()
 
@@ -10,6 +11,14 @@ def dicValue(dictionary,key):
         return dictionary[key]
     except KeyError:
         return ' '
+
+
+@register.simple_tag(takes_context=True)
+def get_mess_name(context):
+    mess = Mess.objects.get(mess_admin=context.dicts[1]['user'])
+    mess_name = mess.mess_name
+    return mess_name
+
 
 @register.filter
 def get_navigation(user):

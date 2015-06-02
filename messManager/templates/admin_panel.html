@@ -38,7 +38,7 @@
           {% endif %}
       </ul>
 
-        <div><a id="logo-container-admin" href="/" class="brand-logo center"><span class="teal-text text-accent-1">Django Practice</span></a></div>
+        <div><a id="logo-container-admin" href="/" class="brand-logo center"><span class="teal-text text-accent-1">{% get_mess_name %}</span></a></div>
         <ul id="nav-mobile" class="side-nav fixed teal darken-3">
         <li><a href="/" class="waves-effect waves-teal"><span class=" medium mdi-action-home"></span>&nbsp;&nbsp;Home</a></li>
         {% with user|get_navigation as sub_navigations %}

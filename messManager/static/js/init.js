@@ -6,6 +6,7 @@
     });
      $('.parallax').parallax();
      $('.modal-trigger').leanModal();
+     $('.tooltipped').tooltip({delay: 50});
     $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });

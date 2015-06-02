@@ -144,3 +144,7 @@ footer.page-footer {
          margin: 10px 10% 10px 10%;
          width: 80%;
      }
+     .help-text{
+         font-size: 9pt;
+         color: gray;
+     }
