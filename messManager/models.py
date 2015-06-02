@@ -8,3 +8,8 @@ class Mess(models.Model):
     mess_name = models.CharField(max_length=100)
     institute_name = models.CharField(max_length=100)
     mess_admin = models.ForeignKey(User)
+
+
+class MemberMess(models.Model):
+    mess = models.ForeignKey(Mess)
+    user = models.ForeignKey(User)

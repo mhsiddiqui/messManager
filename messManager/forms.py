@@ -38,6 +38,8 @@ class MessManagerSignUpForm(forms.Form):
         user.save()
         new_mess = Mess(mess_name=mess_name, institute_name=istitute_name, mess_admin=user)
         new_mess.save()
+        user_type = Group.objects.get(name='Mess Manager')
+        user_type.user_set.add(user)
 
 class UserCreationForm(forms.Form):
     first_name = forms.CharField(label='First Name')
@@ -45,16 +47,14 @@ class UserCreationForm(forms.Form):
     user_name = forms.CharField(label='Username')
     password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     email = forms.EmailField(label='Email id')
-    user_type = forms.ModelChoiceField(queryset=Group.objects.all())
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs.update({'class' : 'validate'})
-        self.fields['last_name'].widget.attrs.update({'class' : 'validate'})
-        self.fields['user_name'].widget.attrs.update({'class' : 'validate'})
-        self.fields['password'].widget.attrs.update({'class' : 'validate'})
-        self.fields['email'].widget.attrs.update({'class' : 'validate'})
-        self.fields['user_type'].widget.attrs.update({})
+        self.fields['first_name'].widget.attrs.update({'class': 'validate'})
+        self.fields['last_name'].widget.attrs.update({'class': 'validate'})
+        self.fields['user_name'].widget.attrs.update({'class': 'validate'})
+        self.fields['password'].widget.attrs.update({'class': 'validate'})
+        self.fields['email'].widget.attrs.update({'class': 'validate'})
 
     def save(self):
 
@@ -63,13 +63,10 @@ class UserCreationForm(forms.Form):
         lname = self.cleaned_data['last_name']
         email = self.cleaned_data['email']
         passwrd = self.cleaned_data['password']
-        user_type = self.cleaned_data['user_type']
-        is_staff = False
-        if str(user_type.name) == 'Administrator':
-            is_staff = True
-        user = User(username=username, first_name=fname, last_name=lname, email=email, is_staff=is_staff)
+        user = User(username=username, first_name=fname, last_name=lname, email=email)
         user.set_password(passwrd)
         user.save()
+        user_type = Group.objects.get(name='Member')
         user_type.user_set.add(user)
 
 
@@ -83,3 +80,4 @@ class Login(forms.Form):
         super(Login, self).__init__(*args, **kwargs)
         self.fields['username_login'].widget.attrs.update({'class': 'validate', 'placeholder': 'Username'})
         self.fields['password_login'].widget.attrs.update({'class': 'validate', 'placeholder': 'Password'})
+

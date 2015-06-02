@@ -1,6 +1,7 @@
 from django import template
 from django.contrib.auth.models import Permission
 from ..models import Mess
+from django.core.exceptions import ObjectDoesNotExist
 
 register = template.Library()
 
@@ -12,11 +13,13 @@ def dicValue(dictionary,key):
     except KeyError:
         return ' '
 
-
 @register.simple_tag(takes_context=True)
 def get_mess_name(context):
-    mess = Mess.objects.get(mess_admin=context.dicts[1]['user'])
-    mess_name = mess.mess_name
+    if Mess.objects.filter(mess_admin=context.dicts[1]['user']).exists():
+        mess = Mess.objects.get(mess_admin=context.dicts[1]['user'])
+        mess_name = mess.mess_name
+    else:
+        mess_name = 'Mess Manager'
     return mess_name
 
 
