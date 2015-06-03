@@ -15,9 +15,9 @@ class Manage_Permissions(admin.ModelAdmin):
         return True
 
 class Manage_ContentType(admin.ModelAdmin):
-    search_fields = ['name']
-    ordering = ('name',)
-    list_display = ('name', 'model')
+    search_fields = ['app_label']
+    ordering = ('app_label',)
+    list_display = ('app_label', 'model')
 
     def has_add_permission(self, request):
         return True
