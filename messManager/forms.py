@@ -66,7 +66,7 @@ class UserCreationForm(forms.Form):
         user = User(username=username, first_name=fname, last_name=lname, email=email)
         user.set_password(passwrd)
         user.save()
-        user_type = Group.objects.get(name='Member')
+        user_type = Group.objects.get(name='Mess Member')
         user_type.user_set.add(user)
 
 
@@ -81,3 +81,11 @@ class Login(forms.Form):
         self.fields['username_login'].widget.attrs.update({'class': 'validate', 'placeholder': 'Username'})
         self.fields['password_login'].widget.attrs.update({'class': 'validate', 'placeholder': 'Password'})
 
+
+class MessJoiningForm(forms.Form):
+    mess = forms.ModelChoiceField(label=("Choose Mess"), queryset = Mess.objects.all(), required=False)
+    mess_code = forms.CharField(label=("Enter Mess Code"), required=False)
+
+
+    def clean(self):
+        pass

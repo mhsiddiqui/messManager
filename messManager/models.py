@@ -9,6 +9,9 @@ class Mess(models.Model):
     institute_name = models.CharField(max_length=100)
     mess_admin = models.ForeignKey(User)
 
+    def __unicode__(self):
+        return str(self.mess_name)
+
 
 class MemberMess(models.Model):
     mess = models.ForeignKey(Mess)

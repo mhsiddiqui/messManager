@@ -1,3 +1,4 @@
+{% load url from future %}{% load i18n %}
 {% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +44,12 @@
         <li><a href="/" class="waves-effect waves-teal"><span class=" medium mdi-action-home"></span>&nbsp;&nbsp;Home</a></li>
         {% with user|get_navigation as sub_navigations %}
 		  {% for sub_menu in sub_navigations %}
-            <li><a href="#" class="waves-effect waves-teal">{{ sub_menu.name }}</a></li>
+            {% url sub_menu.codename as the_url %}
+            {% if the_url %}
+              <li><a href="{{ the_url }}" class="waves-effect waves-teal">{{ sub_menu.name }}</a></li>
+            {% else %}
+                <li><a href="#" class="waves-effect waves-teal">{{ sub_menu.name }}</a></li>
+            {% endif %}
 		    {% endfor %}
         {%endwith%}
       </ul>
