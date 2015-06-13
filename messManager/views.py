@@ -131,10 +131,18 @@ class JoinMess(View):
     mess_joining_form = MessJoiningForm
     template = 'messManager/panel/join_mess.html'
 
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super(JoinMess, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         formset = self.mess_joining_form()
+        return render_to_response(self.template, {'formset': formset},
+                                  context_instance=RequestContext(request))
+
+    def post(self, request, *args, **kwargs):
+        formset = self.mess_joining_form(request.POST, request.FILES)
+        if formset.is_valid():
+            formset.save()
         return render_to_response(self.template, {'formset': formset},
                                   context_instance=RequestContext(request))

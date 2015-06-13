@@ -83,9 +83,11 @@ class Login(forms.Form):
 
 
 class MessJoiningForm(forms.Form):
-    mess = forms.ModelChoiceField(label=("Choose Mess"), queryset = Mess.objects.all(), required=False)
-    mess_code = forms.CharField(label=("Enter Mess Code"), required=False)
+    mess = forms.ModelChoiceField(label=("Choose Mess"), queryset = Mess.objects.all(), required=True,
+                                  empty_label="Select Mess")
 
+    def __init__(self, *args, **kwargs):
+        super(MessJoiningForm, self).__init__(*args, **kwargs)
 
-    def clean(self):
+    def save(self):
         pass
