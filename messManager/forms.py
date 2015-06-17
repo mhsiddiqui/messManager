@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group, UserManager
 from django import forms
 from django.forms import ModelForm
-from models import Mess
+from models import Mess, MemberMess
 
 class MessManagerSignUpForm(forms.Form):
     mess_name = forms.CharField(label='Mess Name')
@@ -89,5 +89,12 @@ class MessJoiningForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(MessJoiningForm, self).__init__(*args, **kwargs)
 
-    def save(self):
-        pass
+    def save(self, user):
+        mess = self.cleaned_data['mess']
+        try:
+            messMember = MemberMess.objects.get(user=user)
+        except MemberMess.DoesNotExist:
+            messMember = MemberMess()
+        messMember.mess = mess
+        messMember.user = user
+        messMember.save()

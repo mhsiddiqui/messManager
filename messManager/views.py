@@ -16,6 +16,7 @@ from django.core.context_processors import csrf
 from messManager.forms import Login, UserCreationForm, MessManagerSignUpForm, MessJoiningForm
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
+from messManager.models import MemberMess
 
 
 def send_email(self):
@@ -130,19 +131,24 @@ class JoinMess(View):
 
     mess_joining_form = MessJoiningForm
     template = 'messManager/panel/join_mess.html'
+    mess = None
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        try:
+            self.mess = MemberMess.objects.get(user=request.user).mess.mess_name
+        except MemberMess.DoesNotExist:
+            pass
         return super(JoinMess, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         formset = self.mess_joining_form()
-        return render_to_response(self.template, {'formset': formset},
+        return render_to_response(self.template, {'formset': formset, 'mess': self.mess},
                                   context_instance=RequestContext(request))
 
     def post(self, request, *args, **kwargs):
         formset = self.mess_joining_form(request.POST, request.FILES)
         if formset.is_valid():
-            formset.save()
-        return render_to_response(self.template, {'formset': formset},
+            formset.save(request.user)
+        return render_to_response(self.template, {'formset': formset, 'mess': self.mess},
                                   context_instance=RequestContext(request))
