@@ -1,15 +1,26 @@
 {% extends "admin_panel.html" %}
+{% load custom_filters %}
 {% block content %}
-Hiasdddddddd ddddddddd dddddddddddd ddddddddddd ddddddddddd
-    <div class="fixed-action-btn" style="bottom: 45px; right: 24px; display: none;">
-          <a class="btn-floating btn-large red">
-            <i class="large mdi-editor-mode-edit"></i>
-          </a>
-          <ul>
-            <li><a class="btn-floating red" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-insert-chart"></i></a></li>
-            <li><a class="btn-floating yellow darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-format-quote"></i></a></li>
-            <li><a class="btn-floating green" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-publish"></i></a></li>
-            <li><a class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-attach-file"></i></a></li>
-          </ul>
-        </div>
+<table class="hoverable centered">
+    <thead>
+        <tr>
+            <th data-field="studen-name">Student Name</th>
+            <th data-field="student-code">Student Code</th>
+            <th data-field="no">No. of Attendances</th>
+            <th data-field="check">Check</th>
+        </tr>
+    </thead>
+    {% for m in member %}
+        <tr>
+            <td>{{ m.user.first_name }} {{ m.user.last_name }}</td>
+            <td>{{ m.user|get_member_code }}</td>
+            <td><input type="number" min="1" value="1" class="number-input"></td>
+            <td><form action="#" >
+                      <input type="checkbox" id="st_1"/>
+                      <label for="st_1"></label>
+                  </form>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
 {% endblock %}

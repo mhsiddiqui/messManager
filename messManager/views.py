@@ -16,7 +16,7 @@ from django.core.context_processors import csrf
 from messManager.forms import Login, UserCreationForm, MessManagerSignUpForm, MessJoiningForm
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
-from messManager.models import MemberMess
+from messManager.models import MemberMess, Mess
 
 
 def send_email(self):
@@ -122,8 +122,10 @@ class AdminPanel(View):
         return super(AdminPanel, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
+        mess = Mess.objects.get(mess_admin=request.user)
+        mess_member = MemberMess.objects.filter(mess=mess)
         return render_to_response('messManager/panel/panel_home.html',
-                                    {'Corporation_Name': 'Django'},
+                                    {'member': mess_member},
                                   context_instance=RequestContext(request))
 
 

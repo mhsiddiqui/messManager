@@ -1,6 +1,6 @@
 from django import template
 from django.contrib.auth.models import Permission
-from ..models import Mess
+from ..models import Mess, MemberMess
 from django.core.exceptions import ObjectDoesNotExist
 
 register = template.Library()
@@ -43,3 +43,11 @@ def get_sub_navigation(user, navigation):
         name__startswith=navigation).order_by('id')
     navigations = list(permissions)
     return navigations
+
+@register.filter
+def get_member_code(user):
+    id = user.id
+    mess = MemberMess.objects.get(user=user).mess
+    mess_name = mess.mess_name
+    mess_abr = ''.join(x[0] for x in mess_name.split())
+    return mess_abr+str(mess.id)+'-G3-'+str(id)

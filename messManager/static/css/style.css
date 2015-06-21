@@ -148,3 +148,6 @@ footer.page-footer {
          font-size: 9pt;
          color: gray;
      }
+     .number-input{
+         width: 60px !important;
+     }

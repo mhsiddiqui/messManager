@@ -3,6 +3,7 @@ from django import forms
 from django.forms import ModelForm
 from models import Mess, MemberMess
 
+
 class MessManagerSignUpForm(forms.Form):
     mess_name = forms.CharField(label='Mess Name')
     institute_name = forms.CharField(label='Institute/Company Name')
@@ -92,9 +93,9 @@ class MessJoiningForm(forms.Form):
     def save(self, user):
         mess = self.cleaned_data['mess']
         try:
-            messMember = MemberMess.objects.get(user=user)
+            member_mess = MemberMess.objects.get(user=user)
         except MemberMess.DoesNotExist:
-            messMember = MemberMess()
-        messMember.mess = mess
-        messMember.user = user
-        messMember.save()
+            member_mess = MemberMess()
+        member_mess.mess = mess
+        member_mess.user = user
+        member_mess.save()
