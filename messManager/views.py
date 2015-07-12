@@ -1,4 +1,6 @@
 from datetime import datetime
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth import backends
 from django.contrib.auth.models import User, Group
 from django.forms import formset_factory
 from django.forms.models import modelform_factory
@@ -17,7 +19,7 @@ from messManager.forms import Login, UserCreationForm, MessManagerSignUpForm, Me
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from messManager.models import MemberMess, Mess
-
+from templatetags.custom_filters import in_group
 
 def send_email(self):
     message_body = 'Hi this is email send through django application made by M Hassan Siddiqui. There is also attached an image.<img src="http://i59.tinypic.com/zv3769.png"/>'
@@ -62,7 +64,10 @@ def signin(request):
                     now = datetime.now()
                     request.session['last_activity'] = now
                     success_msg = 'Login Successfull'
-                    return HttpResponseRedirect('/admin_panel/')
+                    # if user.has_perm(user, 'messManager:messManager_Dashboard'):
+                    #     return HttpResponseRedirect('/admin_panel/')
+                    # else:
+                    #     return HttpResponseRedirect('/join_mess/')
                 else:
                     error_msg = 'invalid Login'
     else:
@@ -118,14 +123,18 @@ class SignUp(RedirectView):
 
 class AdminPanel(View):
 
+    # @method_decorator(permission_required('messManager:messManager_Dashboard', '/join_mess/'))
     def dispatch(self, request, *args, **kwargs):
         return super(AdminPanel, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        mess = Mess.objects.get(mess_admin=request.user)
-        mess_member = MemberMess.objects.filter(mess=mess)
+        data = dict()
+        if in_group(request.user, '2'):
+            mess = Mess.objects.get(mess_admin=request.user)
+            mess_member = MemberMess.objects.filter(mess=mess)
+            data.update({'member': mess_member})
         return render_to_response('messManager/panel/panel_home.html',
-                                    {'member': mess_member},
+                                    data,
                                   context_instance=RequestContext(request))
 
 

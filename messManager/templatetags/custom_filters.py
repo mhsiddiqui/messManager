@@ -51,3 +51,11 @@ def get_member_code(user):
     mess_name = mess.mess_name
     mess_abr = ''.join(x[0] for x in mess_name.split())
     return mess_abr+str(mess.id)+'-G3-'+str(id)
+
+
+def in_group(user, groups):
+    """Returns a boolean if the user is in the given group, or comma-separated
+    list of groups."""
+    group_list = str(groups).split(',')
+    group_list = [int(id) for id in group_list]
+    return bool(user.groups.filter(id__in=group_list).values('id'))

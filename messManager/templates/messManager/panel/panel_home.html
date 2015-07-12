@@ -16,8 +16,8 @@
             <td>{{ m.user|get_member_code }}</td>
             <td><input type="number" min="1" value="1" class="number-input"></td>
             <td><form action="#" >
-                      <input type="checkbox" id="st_1"/>
-                      <label for="st_1"></label>
+                      <input type="checkbox" id="st_{{ m.user.id }}"/>
+                      <label for="st_{{ m.user.id }}"></label>
                   </form>
             </td>
         </tr>
